@@ -1,0 +1,12 @@
+{
+  "name": "Starfleet",
+  "version": "0.1.0",
+  "main": "main.js",
+  "devDependencies": {
+    "electron": "^1.6.2",
+    "electron-packager": "^8.5.2"
+  },
+  "scripts": {
+    "build": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/defconAppKitUFOIcon.icns"
+  }
+}
