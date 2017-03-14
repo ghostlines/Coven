@@ -10,7 +10,7 @@
           <string>ufs</string>
         </array>
         <key>CFBundleTypeIconFile</key>
-        <string>assets/icons/mac/defconAppKitUFOIcon.icns</string>
+        <string>Starfleet.app/Contents/Resources/app/assets/icons/mac/defconAppKitUFOIcon_file.icns</string>
         <key>CFBundleTypeName</key>
         <string>Unified Font Set</string>
         <key>CFBundleTypeRole</key>
