@@ -7,6 +7,6 @@
     "electron-packager": "^8.5.2"
   },
   "scripts": {
-    "build": "electron-packager . --platform=darwin --arch=x64 --overwrite --icon=assets/icons/mac/defconAppKitUFOIcon.icns"
+    "build": "electron-packager . --platform=darwin --arch=x64 --overwrite --icon=assets/icons/mac/defconAppKitUFOIcon.icns --extendInfo=ufs.plist"
   }
 }
