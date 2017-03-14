@@ -37,3 +37,5 @@ jspm_packages
 .node_repl_history
 
 Starfleet-darwin-x64
+
+.DS_Store
