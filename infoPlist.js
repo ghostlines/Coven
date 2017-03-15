@@ -1,5 +1,9 @@
 (function () {
-  require('electron').ipcRenderer.on('ping', (event, message) => {
-    document.getElementsByClassName('info__text')[0].innerHTML = message.data
+  const fs = require('fs')
+  require('electron').ipcRenderer.on('ping', (event, data) => {
+    //   // const infoPlistData = JSON.stringify(data[0])
+    //   // console.log(infoPlistData)
+      document.getElementsByClassName('info__text')[0].innerHTML = data.infoPlist
+    // })
   })
 })()

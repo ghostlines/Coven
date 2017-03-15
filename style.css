@@ -1,0 +1,5 @@
+.info__text {
+  border: solid 1px grey;
+  height: 50px;
+  overflow: scroll;
+}
