@@ -10,9 +10,8 @@ let mainWindow
 app.on('will-finish-launching', () => {
   app.on('open-file', (event, filepath) => {
     event.preventDefault()
-    fileToOpen = filepath
 
-    if (mainWindow) {
+    if (mainWindow, filePath) {
       FileInfo.openWindow(mainWindow)
     }
   })
@@ -24,5 +23,6 @@ app.on('ready', () => {
       pathname: path.join(__dirname, 'index.html'),
       protocol: 'file:',
       slashes: true
-    }))
+  }))
+  FileInfo.openWindow(mainWindow)
 });

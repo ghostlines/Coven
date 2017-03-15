@@ -6,5 +6,11 @@
   <body>
     <h1>YOU MADE IT</h1>
     <p>Thank goodness.</p>
+
+    <script>
+      require('electron').ipcRenderer.on('ping', (event, message) => {
+        console.log(message.data)
+      })
+    </script>
   </body>
 </html>
