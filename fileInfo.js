@@ -18,7 +18,6 @@ const FileInfo = {
         slashes: true
       }))
 
-      mainWindow.webContents.openDevTools()
       mainWindow.webContents.on('did-finish-load', () => {
         mainWindow.webContents.send('ping', fileData)
       })
