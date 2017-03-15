@@ -7,14 +7,16 @@ const FileInfo = require('./fileInfo.js')
 
 let mainWindow
 
-app.on('open-file', (event, filepath) => {
-  event.preventDefault();
-  fileToOpen = filepath;
+app.on('will-finish-launching', () => {
+  app.on('open-file', (event, filepath) => {
+    event.preventDefault()
+    fileToOpen = filepath
 
-  if (mainWindow) {
-    FileInfo.openWindow(mainWindow);
-  }
-});
+    if (mainWindow) {
+      FileInfo.openWindow(mainWindow)
+    }
+  })
+})
 
 app.on('ready', () => {
   mainWindow = new BrowserWindow({ width: 800, height: 600 });
