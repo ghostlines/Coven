@@ -1,8 +1,10 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const url = require('url')
-
+const FileInfo = require('./fileInfo.js')
 let win
+
+// getting the filepath through a argument passed when running `electron . filepath` for testing purposes
 
 function createWindow () {
   win = new BrowserWindow({
@@ -24,6 +26,14 @@ function createWindow () {
   })
 }
 
+// app.on('will-finish-launching', () => {
+  app.on('open-file', (event, path) => {
+    event.preventDefault()
+    FileInfo.openWindow
+  })
+// })
+
+// this is for testing purposes. not sure what should be the default if app is not opened through a double-click
 app.on('ready', createWindow)
 
 app.on('window-all-closed', () => {
