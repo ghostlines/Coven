@@ -31,6 +31,7 @@ app.on('will-finish-launching', () => {
 
 app.on('ready', () => {
   createMainWindow()
+
   menu.show(mainWindow)
   if (fileToOpen) {
     File.display(mainWindow, fileToOpen)

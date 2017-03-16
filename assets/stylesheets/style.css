@@ -1,4 +1,5 @@
 .info__text, .documents__text {
+  white-space: pre;
   border: solid 1px grey;
   height: 150px;
   overflow: scroll;
