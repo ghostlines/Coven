@@ -4,7 +4,6 @@ const url = require('url')
 const fs = require('fs')
 
 const File = {
-  // display: function (mainWindow, filePath) {
   display: function (filePath) {
     const infoPlistData = fs.readFileSync(`${filePath}/info.plist`)
     const documentsPlistData = fs.readFileSync(`${filePath}/documents.plist`)
@@ -14,13 +13,7 @@ const File = {
           pathname: path.join(__dirname, '../file.html'),
           protocol: 'file:',
           slashes: true
-      }))
-
-    // mainWindow.loadURL(url.format({
-    //   pathname: path.join(__dirname, '../file.html'),
-    //   protocol: 'file:',
-    //   slashes: true
-    // }))
+    }))
 
     mainWindow.webContents.on('did-finish-load', () => {
       mainWindow.webContents.send('ping', { 'infoPlist': infoPlistData.toString(), 'documentsPlist': documentsPlistData.toString(), fileName: path.basename(filePath) })
