@@ -1,4 +1,4 @@
-.info__text {
+.info__text, .documents__text {
   border: solid 1px grey;
   height: 50px;
   overflow: scroll;

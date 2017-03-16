@@ -6,7 +6,7 @@ const url = require('url')
 const File = require('./file.js')
 
 let mainWindow
-// global.fileToOpen = null
+global.fileToOpen = null
 
 function createMainWindow () {
   mainWindow = new BrowserWindow({ width: 800, height: 600 })
@@ -15,7 +15,6 @@ function createMainWindow () {
       protocol: 'file:',
       slashes: true
   }))
-  File.display(mainWindow)
 }
 
 app.on('will-finish-launching', () => {
@@ -24,7 +23,7 @@ app.on('will-finish-launching', () => {
     fileToOpen = filePath
 
     if (mainWindow) {
-      File.display(mainWindow)
+      File.display(mainWindow, filePath)
     }
   })
 })

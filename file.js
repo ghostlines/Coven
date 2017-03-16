@@ -4,26 +4,19 @@ const url = require('url')
 const fs = require('fs')
 
 const File = {
-  // openWindow: function (mainWindow, filePath) {
-  display: function (mainWindow) {
-    const filePath = `${process.argv[2]}/info.plist`
-    const documentsPath = `${process.argv[2]}/documents.plist`
+  display: function (mainWindow, filePath) {
+    const infoPlistData = fs.readFileSync(`${filePath}/info.plist`)
+    const documentsPlistData = fs.readFileSync(`${filePath}/documents.plist`)
 
-    fs.readFile(filePath, (err, data) => {
-      if (err) {
-        return console.error(err);
-      }
+    mainWindow.loadURL(url.format({
+      pathname: path.join(__dirname, 'file.html'),
+      protocol: 'file:',
+      slashes: true
+    }))
 
-      mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'file.html'),
-        protocol: 'file:',
-        slashes: true
-      }))
-
-      mainWindow.webContents.openDevTools()
-      mainWindow.webContents.on('did-finish-load', () => {
-        mainWindow.webContents.send('ping', { 'infoPlist': data })
-      })
+    mainWindow.webContents.openDevTools()
+    mainWindow.webContents.on('did-finish-load', () => {
+      mainWindow.webContents.send('ping', { 'infoPlist': infoPlistData.toString(), 'documentsPlist': documentsPlistData.toString() })
     })
   }
 }
