@@ -7,7 +7,13 @@ const File = require('./file.js')
 const menu = {
   openDialog: function (mainWindow) {
     dialog.showOpenDialog({
-      properties: ['openFile']
+      properties: ['openFile'],
+      filters: [
+        {
+          name: 'All Files',
+          extensions: ['ufs']
+        }
+      ]
     }, (fileNames) => {
       File.display(mainWindow, fileNames[0])
     })
