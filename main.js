@@ -1,8 +1,11 @@
-const electron = require('electron');
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+const electron = require('electron')
+const app = electron.app
+const BrowserWindow = electron.BrowserWindow
+const dialog = electron.dialog
 const path = require('path')
 const url = require('url')
+const Menu = electron.Menu
+
 const File = require('./file.js')
 
 let mainWindow
@@ -17,6 +20,25 @@ function createMainWindow () {
   }))
 }
 
+function showMenu () {
+  const menuTemplate = [
+    {
+      label: 'File',
+      submenu: [
+        {
+          label: 'Open File...',
+          accelerator: 'CommandOrControl+O',
+          click() {
+            return dialog.showOpenDialog({properties: ['openFile']})
+          }
+        }
+      ]
+    }
+  ]
+  const template = Menu.buildFromTemplate(menuTemplate)
+  Menu.setApplicationMenu(template)
+}
+
 app.on('will-finish-launching', () => {
   app.on('open-file', (event, filePath) => {
     event.preventDefault()
@@ -29,6 +51,7 @@ app.on('will-finish-launching', () => {
 
 app.on('ready', () => {
   createMainWindow()
+  showMenu()
   if (fileToOpen) {
     File.display(mainWindow, fileToOpen)
   }
