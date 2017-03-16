@@ -1,9 +1,11 @@
-const electron = require('electron');
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+const electron = require('electron')
+const app = electron.app
+const BrowserWindow = electron.BrowserWindow
 const path = require('path')
 const url = require('url')
-const File = require('./file.js')
+
+const File = require('./main-process/file.js')
+const menu = require('./main-process/menu.js')
 
 let mainWindow
 global.fileToOpen = null
@@ -27,10 +29,9 @@ app.on('will-finish-launching', () => {
   })
 })
 
-app.once('window-all-closed', () => app.quit())
-
 app.on('ready', () => {
   createMainWindow()
+  menu.show(mainWindow)
   if (fileToOpen) {
     File.display(mainWindow, fileToOpen)
   }
