@@ -1,5 +1,10 @@
 .info__text, .documents__text {
   border: solid 1px grey;
-  height: 50px;
+  height: 150px;
   overflow: scroll;
+}
+
+.info__file-name, .documents__file-name {
+  margin: 0;
+  font-size: 12pt;
 }

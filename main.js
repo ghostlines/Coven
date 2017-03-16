@@ -9,7 +9,7 @@ let mainWindow
 global.fileToOpen = null
 
 function createMainWindow () {
-  mainWindow = new BrowserWindow({ width: 800, height: 600 })
+  mainWindow = new BrowserWindow({ width: 600, height: 400 })
   mainWindow.loadURL(url.format({
       pathname: path.join(__dirname, 'index.html'),
       protocol: 'file:',
@@ -21,7 +21,6 @@ app.on('will-finish-launching', () => {
   app.on('open-file', (event, filePath) => {
     event.preventDefault()
     fileToOpen = filePath
-
     if (mainWindow) {
       File.display(mainWindow, filePath)
     }
