@@ -5,7 +5,7 @@ const dialog = electron.dialog
 const File = require('./file.js')
 
 const menu = {
-  openDialog: function (mainWindow) {
+  openDialog: function () {
     dialog.showOpenDialog({
       properties: ['openFile'],
       filters: [
@@ -15,11 +15,11 @@ const menu = {
         }
       ]
     }, (fileNames) => {
-      File.display(mainWindow, fileNames[0])
+      File.display(fileNames[0])
     })
   },
 
-  show: function (mainWindow) {
+  show: function () {
     const menuTemplate = [
       {
         submenu: [
@@ -35,7 +35,7 @@ const menu = {
             role: 'file',
             label: 'Open File...',
             accelerator: 'CommandOrControl+O',
-            click() { menu.openDialog(mainWindow) }
+            click() { menu.openDialog() }
           }
         ]
       }
