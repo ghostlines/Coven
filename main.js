@@ -20,6 +20,14 @@ function createMainWindow () {
   }))
 }
 
+function openFileMenuItem() {
+  dialog.showOpenDialog({
+    properties: ['openFile']
+  }, (fileNames) => {
+    File.display(mainWindow, fileNames[0])
+  })
+}
+
 function showMenu () {
   const menuTemplate = [
     {
@@ -37,9 +45,7 @@ function showMenu () {
           role: 'file',
           label: 'Open File...',
           accelerator: 'CommandOrControl+O',
-          click() {
-            return dialog.showOpenDialog({properties: ['openFile']})
-          }
+          click() { openFileMenuItem() }
         }
       ]
     }
