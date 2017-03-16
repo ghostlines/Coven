@@ -27,8 +27,6 @@ app.on('will-finish-launching', () => {
   })
 })
 
-app.once('window-all-closed', () => app.quit())
-
 app.on('ready', () => {
   createMainWindow()
   if (fileToOpen) {
