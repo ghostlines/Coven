@@ -13,7 +13,7 @@ const File = {
       protocol: 'file:',
       slashes: true
     }))
-
+  
     mainWindow.webContents.on('did-finish-load', () => {
       mainWindow.webContents.send('ping', { 'infoPlist': infoPlistData.toString(), 'documentsPlist': documentsPlistData.toString(), fileName: path.basename(filePath) })
     })
