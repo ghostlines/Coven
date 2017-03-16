@@ -26,31 +26,7 @@ function showMenu () {
       label: 'Edit',
       submenu: [
         {
-          role: 'undo'
-        },
-        {
-          role: 'redo'
-        },
-        {
-          type: 'separator'
-        },
-        {
-          role: 'cut'
-        },
-        {
-          role: 'copy'
-        },
-        {
-          role: 'paste'
-        },
-        {
-          role: 'pasteandmatchstyle'
-        },
-        {
-          role: 'delete'
-        },
-        {
-          role: 'selectall'
+          role: 'quit'
         }
       ]
     },
@@ -68,6 +44,7 @@ function showMenu () {
       ]
     }
   ]
+
   const template = Menu.buildFromTemplate(menuTemplate)
   Menu.setApplicationMenu(template)
 }
