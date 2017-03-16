@@ -22,7 +22,6 @@ const menu = {
   show: function (mainWindow) {
     const menuTemplate = [
       {
-        label: 'Edit',
         submenu: [
           {
             role: 'quit'
