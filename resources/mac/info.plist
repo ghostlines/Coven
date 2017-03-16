@@ -18,7 +18,7 @@
         <key>LSTypeIsPackage</key>
         <true/>
         <key>NSDocumentClass</key>
-        <string>DoodleDocument</string>
+        <string>FileDocument</string>
       </dict>
     </array>
   </dict>
