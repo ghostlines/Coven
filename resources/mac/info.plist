@@ -14,7 +14,7 @@
         <key>CFBundleTypeName</key>
         <string>Unified Font Set</string>
         <key>CFBundleTypeRole</key>
-        <string>Editor</string>
+        <string>Viewer</string>
         <key>LSTypeIsPackage</key>
         <true/>
         <key>NSDocumentClass</key>
