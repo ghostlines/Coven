@@ -9,7 +9,7 @@ const File = {
     const documentsPlistData = fs.readFileSync(`${filePath}/documents.plist`)
 
     mainWindow.loadURL(url.format({
-      pathname: path.join(__dirname, 'file.html'),
+      pathname: path.join(__dirname, '../file.html'),
       protocol: 'file:',
       slashes: true
     }))
