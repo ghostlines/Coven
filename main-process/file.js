@@ -8,11 +8,11 @@ const File = {
     const infoPlistData = fs.readFileSync(`${filePath}/info.plist`)
     const documentsPlistData = fs.readFileSync(`${filePath}/documents.plist`)
 
-      const mainWindow = new BrowserWindow({ width: 600, height: 400 })
-      mainWindow.loadURL(url.format({
-          pathname: path.join(__dirname, '../file.html'),
-          protocol: 'file:',
-          slashes: true
+    const mainWindow = new BrowserWindow({ width: 600, height: 400 })
+    mainWindow.loadURL(url.format({
+      pathname: path.join(__dirname, '../file.html'),
+      protocol: 'file:',
+      slashes: true
     }))
 
     mainWindow.webContents.on('did-finish-load', () => {
