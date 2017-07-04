@@ -1,49 +1,54 @@
-const electron = require('electron')
-const Menu = electron.Menu
-const dialog = electron.dialog
+const electron = require("electron");
+const Menu = electron.Menu;
+const dialog = electron.dialog;
 
-const File = require('./file.js')
+const File = require("./file.js");
 
 const menu = {
-  openDialog: function () {
-    dialog.showOpenDialog({
-      properties: ['openFile'],
-      filters: [
-        {
-          name: 'All Files',
-          extensions: ['ufs']
-        }
-      ]
-    }, (fileNames) => {
-      File.display(fileNames[0])
-    })
+  openDialog: function() {
+    dialog.showOpenDialog(
+      {
+        properties: ["openFile"],
+        filters: [
+          {
+            name: "All Files",
+            extensions: ["ufs"]
+          }
+        ]
+      },
+      fileNames => {
+        File.display(fileNames[0]);
+      }
+    );
   },
 
-  show: function () {
+  show: function() {
     const menuTemplate = [
       {
         submenu: [
           {
-            role: 'quit'
+            role: "quit"
           }
         ]
       },
       {
-        label: 'File',
+        label: "File",
         submenu: [
           {
-            role: 'file',
-            label: 'Open File...',
-            accelerator: 'CommandOrControl+O',
-            click() { menu.openDialog() }
+            role: "file",
+            label: "Open File...",
+            accelerator: "CommandOrControl+O",
+            click() {
+              menu.openDialog();
+            }
           }
         ]
       }
-    ]
+    ];
+    const template = Menu.buildFromTemplate(menuTemplate);
 
-    const template = Menu.buildFromTemplate(menuTemplate)
-    Menu.setApplicationMenu(template)
+    Menu.setApplicationMenu(template);
   }
-}
+};
 
-module.exports = menu
+module.exports = menu;
