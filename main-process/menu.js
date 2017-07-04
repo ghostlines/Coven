@@ -17,7 +17,9 @@ const menu = {
         ]
       },
       fileNames => {
-        File.display(fileNames[0]);
+        if (fileNames) {
+          File.display(fileNames[0]);
+        }
       }
     );
   },
