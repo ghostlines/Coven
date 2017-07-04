@@ -1,6 +1,8 @@
 (function() {
+  const electron = require("electron");
   const fs = require("fs");
-  require("electron").ipcRenderer.on("ping", (event, data) => {
+
+  electron.ipcRenderer.on("ping", (event, data) => {
     const infoPlistText = document.createTextNode(data.infoPlist);
     const documentsPlistText = document.createTextNode(data.documentsPlist);
 
