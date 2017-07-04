@@ -1,6 +1,4 @@
-const { app, BrowserWindow } = require("electron");
-const path = require("path");
-const url = require("url");
+const { app } = require("electron");
 
 const File = require("./main-process/file.js");
 const menu = require("./main-process/menu.js");
