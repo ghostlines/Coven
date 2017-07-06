@@ -1,25 +1,33 @@
 const { app } = require("electron");
+const Kefir = require("kefir");
 
 const File = require("./main-process/file.js");
-const menu = require("./main-process/menu.js");
+const Menu = require("./main-process/menu.js");
 
-global.fileToOpen = null;
+const menu = Menu();
 
-app.on("will-finish-launching", () => {
-  app.on("open-file", (event, filePath) => {
-    event.preventDefault();
-
-    fileToOpen = filePath;
-    File.display(fileToOpen);
-  });
+const appLaunched = Kefir.fromEvents(app, "will-finish-launching");
+const appReady = Kefir.fromEvents(app, "ready");
+const appOpenFile = Kefir.fromEvents(app, "open-file", (event, filePath) => {
+  event.filePath = filePath;
+  return event;
 });
 
-app.on("ready", () => {
-  if (app.isReady()) {
-    menu.show();
+const isReady = appReady.scan(() => true, false);
+const isLoading = isReady.map(x => !x);
 
-    if (fileToOpen) {
-      File.display(fileToOpen);
-    }
-  }
+const appOpenedFile = appOpenFile.map(event => event.filePath);
+const openedFile = Kefir.merge([appOpenedFile, menu.openedFile]);
+const fileToOpen = openedFile.bufferWhileBy(isLoading).flatten();
+
+appReady.observe(() => {
+  menu.show();
+});
+
+appOpenFile.observe(event => {
+  event.preventDefault();
+});
+
+fileToOpen.observe(filePath => {
+  File.display(filePath);
 });

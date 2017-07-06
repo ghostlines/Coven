@@ -1,28 +1,33 @@
 const { dialog, Menu } = require("electron");
+const Kefir = require("kefir");
 
-const File = require("./file.js");
+module.exports = function() {
+  const openedFile = Kefir.pool();
 
-const menu = {
-  openDialog: function() {
-    dialog.showOpenDialog(
-      {
-        properties: ["openFile"],
-        filters: [
-          {
-            name: "All Files",
-            extensions: ["ufs"]
+  const openDialog = function() {
+    const dialogSelection = Kefir.fromCallback(callback => {
+      dialog.showOpenDialog(
+        {
+          properties: ["openFile"],
+          filters: [
+            {
+              name: "All Files",
+              extensions: ["ufs"]
+            }
+          ]
+        },
+        fileNames => {
+          if (fileNames) {
+            callback(fileNames[0]);
           }
-        ]
-      },
-      fileNames => {
-        if (fileNames) {
-          File.display(fileNames[0]);
         }
-      }
-    );
-  },
+      );
+    });
 
-  show: function() {
+    openedFile.plug(dialogSelection);
+  };
+
+  const show = function() {
     const menuTemplate = [
       {
         submenu: [
@@ -39,7 +44,7 @@ const menu = {
             label: "Open File...",
             accelerator: "CommandOrControl+O",
             click() {
-              menu.openDialog();
+              openDialog();
             }
           }
         ]
@@ -48,7 +53,11 @@ const menu = {
     const template = Menu.buildFromTemplate(menuTemplate);
 
     Menu.setApplicationMenu(template);
-  }
-};
+  };
 
-module.exports = menu;
+  return {
+    openedFile,
+    openDialog,
+    show
+  };
+};
