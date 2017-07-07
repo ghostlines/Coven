@@ -1,6 +1,8 @@
 const { app } = require("electron");
 const Kefir = require("kefir");
 
+require("electron-debug")({ showDevTools: true });
+
 const File = require("./main-process/file.js");
 const Menu = require("./main-process/menu.js");
 

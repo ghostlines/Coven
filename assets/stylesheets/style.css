@@ -1,11 +1,13 @@
-.info__text, .documents__text {
+.info__file-name,
+.documents__file-name {
+  margin: 0;
+  font-size: 12pt;
+}
+
+.info__text,
+.documents__text {
   white-space: pre;
   border: solid 1px grey;
   height: 150px;
   overflow: scroll;
-}
-
-.info__file-name, .documents__file-name {
-  margin: 0;
-  font-size: 12pt;
 }

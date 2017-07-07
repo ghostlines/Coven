@@ -1,15 +1,20 @@
+import React from "react";
+import ReactDOM from "react-dom";
+
+import Main from "./main.jsx";
+
 (function() {
   const { ipcRenderer } = require("electron");
-  const fs = require("fs");
 
   ipcRenderer.on("ping", (event, data) => {
-    const infoPlistText = document.createTextNode(data.infoPlist);
-    const documentsPlistText = document.createTextNode(data.documentsPlist);
-
     document.title = data.fileName;
-    document.getElementsByClassName("info__text")[0].appendChild(infoPlistText);
-    document
-      .getElementsByClassName("documents__text")[0]
-      .appendChild(documentsPlistText);
+
+    ReactDOM.render(
+      <Main
+        info={data.infoPlist}
+        documents={data.documentsPlist}
+      />,
+      document.querySelector(".main")
+    );
   });
 })();
