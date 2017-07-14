@@ -5,9 +5,9 @@ class Main extends React.Component {
     return (
       <div className="panels">
         <div className="info">
-          <h1 className="info__file-name">
+          <div className="info__file-name">
             info.plist
-          </h1>
+          </div>
 
           <div className="info__text">
             {this.props.info}
@@ -15,9 +15,9 @@ class Main extends React.Component {
         </div>
 
         <div className="documents">
-          <h1 className="documents__file-name">
+          <div className="documents__file-name">
             documents.plist
-          </h1>
+          </div>
 
           <div className="documents__text">
             {this.props.documents}

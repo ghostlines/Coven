@@ -1,13 +1,21 @@
+body {
+  background-color: #ECECEC;
+  font-family: BlinkMacSystemFont;
+  font-size: 10pt;
+}
+
 .info__file-name,
 .documents__file-name {
   margin: 0;
-  font-size: 12pt;
+  font-weight: bold;
 }
 
 .info__text,
 .documents__text {
   white-space: pre;
-  border: solid 1px grey;
+  border: solid 1px #D3D3D5;
   height: 150px;
   overflow: scroll;
+  background-color: #FAFAFA;
+  padding: 5px;
 }
