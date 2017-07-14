@@ -1,33 +1,24 @@
-import { app } from "electron";
+import { app as core } from "electron";
 import debug from "electron-debug";
 import Kefir from "kefir";
 
+import App from "./main-process/app.js";
 import File from "./main-process/file.js";
 import Menu from "./main-process/menu.js";
 
+const app = App(core);
 const menu = Menu();
 
-const appLaunched = Kefir.fromEvents(app, "will-finish-launching");
-const appReady = Kefir.fromEvents(app, "ready");
-const appOpenFile = Kefir.fromEvents(app, "open-file", (event, filePath) => {
-  event.filePath = filePath;
-  return event;
-});
-
-const isReady = appReady.scan(() => true, false);
-const isLoading = isReady.map(x => !x);
-
-const appOpenedFile = appOpenFile.map(event => event.filePath);
-const openedFile = Kefir.merge([appOpenedFile, menu.openedFile]);
-const fileToOpen = openedFile.bufferWhileBy(isLoading).flatten();
+const openedFile = Kefir.merge([app.openedFile, menu.openedFile]);
+const fileToOpen = openedFile.bufferWhileBy(app.isLoading).flatten();
 
 debug({ showDevTools: true });
 
-appReady.observe(() => {
+app.ready.observe(() => {
   menu.show();
 });
 
-appOpenFile.observe(event => {
+app.openFile.observe(event => {
   event.preventDefault();
 });
 
