@@ -1,10 +1,9 @@
-const { app } = require("electron");
-const Kefir = require("kefir");
+import { app } from "electron";
+import debug from "electron-debug";
+import Kefir from "kefir";
 
-require("electron-debug")({ showDevTools: true });
-
-const File = require("./main-process/file.js");
-const Menu = require("./main-process/menu.js");
+import File from "./main-process/file.js";
+import Menu from "./main-process/menu.js";
 
 const menu = Menu();
 
@@ -21,6 +20,8 @@ const isLoading = isReady.map(x => !x);
 const appOpenedFile = appOpenFile.map(event => event.filePath);
 const openedFile = Kefir.merge([appOpenedFile, menu.openedFile]);
 const fileToOpen = openedFile.bufferWhileBy(isLoading).flatten();
+
+debug({ showDevTools: true });
 
 appReady.observe(() => {
   menu.show();

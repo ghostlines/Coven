@@ -1,7 +1,7 @@
-const { BrowserWindow } = require("electron");
-const path = require("path");
-const url = require("url");
-const fs = require("fs");
+import { BrowserWindow } from "electron";
+import fs from "fs";
+import path from "path";
+import url from "url";
 
 const File = {
   display: function(filePath) {
@@ -27,4 +27,4 @@ const File = {
   }
 };
 
-module.exports = File;
+export default File;
