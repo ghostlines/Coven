@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Main from "./main.jsx";
+import Main from "./modules/main.jsx";
 
 (function() {
   const { ipcRenderer } = require("electron");
