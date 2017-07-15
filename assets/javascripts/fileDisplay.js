@@ -10,10 +10,7 @@ import Main from "./modules/main.jsx";
     document.title = data.fileName;
 
     ReactDOM.render(
-      <Main
-        info={data.infoPlist}
-        documents={data.documentsPlist}
-      />,
+      <Main info={data.ufs.info} documents={data.ufs.documents} />,
       document.querySelector(".main")
     );
   });

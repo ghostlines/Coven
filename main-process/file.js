@@ -1,13 +1,13 @@
 import { BrowserWindow } from "electron";
-import fs from "fs";
 import Kefir from "kefir";
 import path from "path";
 import url from "url";
 
+import { read as readUFS } from "./ufs";
+
 const File = {
   display: function(filePath) {
-    const infoPlistData = fs.readFileSync(`${filePath}/info.plist`);
-    const documentsPlistData = fs.readFileSync(`${filePath}/documents.plist`);
+    const ufs = readUFS(filePath);
     const window = new BrowserWindow({ width: 600, height: 400, show: false });
     const windowReady = Kefir.fromEvents(window, "ready-to-show").take(1);
 
@@ -20,11 +20,9 @@ const File = {
     );
 
     window.webContents.on("did-finish-load", () => {
-      window.webContents.send("ping", {
-        infoPlist: infoPlistData.toString(),
-        documentsPlist: documentsPlistData.toString(),
-        fileName: path.basename(filePath)
-      });
+      const fileName = path.basename(filePath);
+
+      window.webContents.send("ping", { ufs, fileName });
     });
 
     windowReady.observe(() => window.show());
