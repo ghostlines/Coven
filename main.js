@@ -1,10 +1,10 @@
-import { app as core } from "electron";
-import debug from "electron-debug";
-import Kefir from "kefir";
+const { app: core } = require("electron");
+const debug = require("electron-debug");
+const Kefir = require("kefir");
 
-import App from "./main-process/app.js";
-import File from "./main-process/file.js";
-import Menu from "./main-process/menu.js";
+const App = require("./main-process/app.js");
+const File = require("./main-process/file.js");
+const Menu = require("./main-process/menu.js");
 
 const app = App(core);
 const menu = Menu();

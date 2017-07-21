@@ -1,9 +1,9 @@
-import { BrowserWindow } from "electron";
-import Kefir from "kefir";
-import path from "path";
-import url from "url";
+const { BrowserWindow } = require("electron");
+const Kefir = require("kefir");
+const path = require("path");
+const url = require("url");
 
-import { read as readUFS } from "./ufs";
+const { read: readUFS } = require("./ufs");
 
 const File = {
   display: function(filePath) {
@@ -35,4 +35,4 @@ const File = {
   }
 };
 
-export default File;
+module.exports = File;

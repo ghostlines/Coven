@@ -1,4 +1,4 @@
-import fs from "fs";
+const fs = require("fs");
 
 function read(filePath) {
   const info = fs.readFileSync(`${filePath}/info.plist`).toString();
@@ -7,4 +7,4 @@ function read(filePath) {
   return { info, documents };
 }
 
-export { read };
+module.exports = { read };

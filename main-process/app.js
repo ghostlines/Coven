@@ -1,4 +1,4 @@
-import Kefir from "kefir";
+const Kefir = require("kefir");
 
 function App(core) {
   const ready = Kefir.fromEvents(core, "ready");
@@ -21,4 +21,4 @@ function App(core) {
   }
 }
 
-export default App;
+module.exports = App;

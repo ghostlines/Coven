@@ -1,7 +1,7 @@
-import { dialog, Menu } from "electron";
-import Kefir from "kefir";
+const { dialog, Menu } = require("electron");
+const Kefir = require("kefir");
 
-export default function() {
+module.exports = function() {
   const openedFile = Kefir.pool();
 
   const openDialog = function() {
