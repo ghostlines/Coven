@@ -4,7 +4,7 @@
   "main": "main.js",
   "scripts": {
     "dev": "electron -r babel-register .",
-    "build": "electron-packager . --platform=darwin --arch=x64 --overwrite --icon=assets/icons/mac/appIcon.icns --extend-info=resources/mac/info.plist"
+    "build": "electron-packager . --platform=darwin --arch=x64 --overwrite --icon=assets/icons/mac/appIcon.icns --extend-info=resources/mac/info.plist --ignore=\"(examples|resources|\.gitignore)\""
   },
   "dependencies": {
     "babel-preset-es2015": "^6.24.1",
