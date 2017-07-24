@@ -29,7 +29,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: auto;
+  cursor: default;
+  user-select: none;
   font-size: 9pt;
   border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
