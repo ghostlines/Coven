@@ -10,7 +10,15 @@ import Main from "./modules/main.jsx";
     document.title = data.fileName;
 
     ReactDOM.render(
-      <Main info={data.ufs.info} documents={data.ufs.documents} />,
+      <Main
+        documents={data.ufs.documents}
+        features={data.ufs.features}
+        fontinfo={data.ufs.fontinfo}
+        groups={data.ufs.groups}
+        interpolation={data.ufs.interpolation}
+        lib={data.ufs.lib}
+        metainfo={data.ufs.metainfo}
+      />,
       document.querySelector(".main")
     );
   });

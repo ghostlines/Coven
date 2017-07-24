@@ -31,6 +31,11 @@ body {
   justify-content: center;
   cursor: auto;
   font-size: 9pt;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.button:last-child {
+  border-right: none;
 }
 
 .button--active {
