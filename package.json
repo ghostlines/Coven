@@ -12,6 +12,7 @@
     "babel-register": "^6.24.1",
     "devtron": "^1.4.0",
     "electron-debug": "^1.2.0",
+    "fast-plist": "^0.1.2",
     "kefir": "^3.7.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
