@@ -1,25 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Kefir as K } from "kefir";
 
 import Main from "./modules/main.jsx";
 
 (function() {
   const { ipcRenderer } = require("electron");
 
-  ipcRenderer.on("ping", (event, data) => {
-    document.title = data.fileName;
+  const ping = K.fromEvents(ipcRenderer, "ping", (_, data) => data);
+  const fileName = ping.map(d => d.fileName);
+  const ufs = ping.map(d => d.ufs);
 
-    ReactDOM.render(
-      <Main
-        documents={data.ufs.documents}
-        features={data.ufs.features}
-        fontinfo={data.ufs.fontinfo}
-        groups={data.ufs.groups}
-        interpolation={data.ufs.interpolation}
-        lib={data.ufs.lib}
-        metainfo={data.ufs.metainfo}
-      />,
-      document.querySelector(".main")
-    );
+  fileName.observe(name => {
+    document.title = name;
   });
+
+  ReactDOM.render(<Main updates={ufs} />, document.querySelector(".main"));
 })();

@@ -9,8 +9,16 @@ class Main extends React.Component {
     super(props);
 
     this.state = {
-      active: Object.keys(props)[0]
+      active: null,
+      ufs: {}
     };
+
+    this.props.updates.observe(ufs => {
+      this.setState({
+        ufs,
+        active: Object.keys(ufs)[0]
+      });
+    });
   }
 
   handleActiveChange(active) {
@@ -18,7 +26,9 @@ class Main extends React.Component {
   }
 
   render() {
-    const segments = Object.keys(this.props).map(option => {
+    if (this.state.active === null) return null;
+
+    const segments = Object.keys(this.state.ufs).map(option => {
       const isActive = this.state.active === option;
       const onClick = this.handleActiveChange.bind(this);
 
@@ -32,7 +42,7 @@ class Main extends React.Component {
       );
     });
 
-    const content = this.props[this.state.active];
+    const content = this.state.ufs[this.state.active];
 
     return (
       <div className="panels">
